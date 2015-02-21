@@ -29,8 +29,11 @@ app.database = function()
 	{
 		try 
 		{
-			var json = localStorage.getItem(key)
-			return JSON.parse(json);
+			var json = localStorage.getItem(key) //retrieve database from local storage in json format
+			json = JSON.parse(json);             //parse json into a javascript object
+			if (json === null)                   //if database is null
+				json = [];                       //create an empty database
+			return json;
 		} catch(e) 
 		{
 			return null;

@@ -3,6 +3,7 @@ window.onload = function() {
 	document.getElementById("closeConfirm").onclick = hideConfirm;
 	document.getElementById("closeReject").onclick = hideReject;
 	document.getElementById("searchBtn").onclick = searchBook;
+	document.getElementById("openLibraryBtn").onclick = queryOpenLibrary;
 }
 
 console.log(app);
@@ -88,5 +89,40 @@ function searchBook() {
 			a.appendChild(pPrice);
 			list.appendChild(a);
 		}
+	}
+}
+
+function queryOpenLibrary()
+{
+	var isbn = document.getElementById("isbn10").value;
+	app.openLibrary.search(isbn, fillOutForm);
+}
+
+function fillOutForm(book)
+{
+	// title
+	if (book.title && book.title.length)
+	{
+		document.getElementById("bookTitle").value = book.title;
+	}
+	// subtitle
+	if (book.subtitle && book.subtitle.length)
+	{
+		document.getElementById("bookSubtitle").value = book.subtitle;
+	}
+	// Author first name
+	if (book.authorFirstName && book.authorFirstName.length)
+	{
+		document.getElementById("authorFirst").value = book.authorFirstName;
+	}
+	// Author last name
+	//if (book.subtitle && book.subtitle.length)
+	//{
+	//	document.getElementById("bookSubtitle").value(book.subtitle);
+	//}
+	// Edition
+	if (book.edition && book.edition.length)
+	{
+		document.getElementById("edition").value = book.edition;
 	}
 }

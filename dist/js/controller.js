@@ -10,24 +10,31 @@ console.log(app);
 
 //After entering in book information, the book is submitted to the database
 function submit() {
-	$('#myModal').modal('hide');
+	// $('#myModal').modal('hide');
+	var authorLast = document.getElementById("authorLast").value;
+	var authorFirst = document.getElementById("authorFirst").value;
+	var bookSubtitle = document.getElementById("bookSubtitle").value;
+	var edition = document.getElementById("edition").value;
+	var bookTitle = document.getElementById("bookTitle").value;
+	var isbn10 = document.getElementById("isbn10").value;
+	var isbn13 = document.getElementById("isbn13").value;
+	var price = document.getElementById("price").value;
 
 	var book = app.schema.book();
-	book.authorLastName = document.getElementById("authorLast").value;
-	book.authorFirstName = document.getElementById("authorFirst").value;
-	book.subTitle = document.getElementById("bookSubtitle").value;
-	book.edition = document.getElementById("edition").value;
-	book.title = document.getElementById("bookTitle").value;
-	book.ISBN10 = document.getElementById("isbn10").value;
-	book.ISBN13 = document.getElementById("isbn13").value;
-	book.price = document.getElementById("price").value;
+	book.authorLastName = authorLast;
+	book.authorFirstName = authorFirst;
+	book.subTitle = bookSubtitle;
+	book.edition = edition;
+	book.title = bookTitle;
+	book.ISBN10 = isbn10;
+	book.ISBN13 = isbn13;
+	book.price = price;
 
 	if (isSupported()) {
 		var db = app.database.read();
 		db.push(book);
 		app.database.write(db);
 		$('#confirm').show();
-		alert(book.title);
 	} else {
 		$('#rejected').show();
 	}

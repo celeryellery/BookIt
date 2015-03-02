@@ -100,7 +100,50 @@ function searchBook() {
 function queryOpenLibrary()
 {
 	var isbn = document.getElementById("isbn10").value;
-	app.openLibrary.search(isbn, fillOutForm);
+	if (validateIsbn(isbn))
+	{
+		app.openLibrary.search(isbn, fillOutForm);
+	}
+	else
+	{
+		alert("Please check your ISBN format. Something's not right!");
+	}
+}
+
+// Determine whether user made an error typing in ISBN
+function validateIsbn(isbn)
+{
+	// Note: Validation algorithm from http://en.wikipedia.org/wiki/International_Standard_Book_Number
+	// ISBN 10
+	if (isbn.length === 10 )
+	{
+		var sumOfProducts10 = 0;
+		for (var i = 10; i > 0; i--)
+		{
+			sumOfProducts10 += isbn[10-i]*i;
+		}
+		return ((sumOfProducts10%11)===0);
+	}
+	// ISBN 13
+	else if (isbn.length === 13)
+	{
+		var sumOfProducts13 = 0;
+		var multiplier = 1;
+		for (var i = 13; i > 0; i--)
+		{
+			multiplier = 1;
+			if (i%2 === 0)
+			{
+				multiplier = 3;
+			}
+			sumOfProducts13 += isbn[13-i]*multiplier;
+		}
+		return ((sumOfProducts13%10)===0);
+	}
+	else
+	{
+		return false;
+	}
 }
 
 function fillOutForm(book)

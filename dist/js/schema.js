@@ -17,8 +17,7 @@ app.schema = function()
 					title: null,
 					subTitle: null,
 					edition: null,
-					ISBN10: null,
-					ISBN13: null,
+					ISBN: null,
 					price: null};
 		return obj;
 /*

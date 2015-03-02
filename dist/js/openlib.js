@@ -20,13 +20,9 @@ app.openLibrary = function()
 						if(substr === 'ISBN:')
 						{
 							// ISBN
-							if(data[key].details.isbn_13 != undefined && data[key].details.isbn_13.length)
+							if(data[key].details.isbn != undefined && data[key].details.isbn.length)
 							{
-								book.isbn = data[key].details.isbn_13[0];
-							}
-							else
-							{
-								book.ISBN10 = key.substring(5,key.length);
+								book.isbn = data[key].details.isbn[0];
 							}
 							
 							// title

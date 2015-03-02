@@ -15,8 +15,7 @@ function submit() {
 	var bookSubtitle = document.getElementById("bookSubtitle").value;
 	var edition = document.getElementById("edition").value;
 	var bookTitle = document.getElementById("bookTitle").value;
-	var isbn10 = document.getElementById("isbn10").value;
-	var isbn13 = document.getElementById("isbn13").value;
+	var isbn = document.getElementById("isbn").value;
 	var price = document.getElementById("price").value;
 
 	var book = app.schema.book();
@@ -24,8 +23,7 @@ function submit() {
 	book.subTitle = bookSubtitle;
 	book.edition = edition;
 	book.title = bookTitle;
-	book.ISBN10 = isbn10;
-	book.ISBN13 = isbn13;
+	book.ISBN = isbn;
 	book.price = price;
 
 	if (isSupported()) {
@@ -99,7 +97,7 @@ function searchBook() {
 
 function queryOpenLibrary()
 {
-	var isbn = document.getElementById("isbn10").value;
+	var isbn = document.getElementById("isbn").value;
 	if (validateIsbn(isbn))
 	{
 		app.openLibrary.search(isbn, fillOutForm);

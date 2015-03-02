@@ -13,8 +13,7 @@ app.schema = function()
 	
 	function book()
 	{
-		var obj =  {authorLastName: null,
-					authorFirstName: null,
+		var obj =  {authorFullName: null,
 					title: null,
 					subTitle: null,
 					edition: null,

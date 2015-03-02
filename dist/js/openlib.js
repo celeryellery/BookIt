@@ -44,7 +44,7 @@ app.openLibrary = function()
 							// author
 							if(data[key].details.authors != undefined && data[key].details.authors.length)
 							{
-								book.authorFirstName = data[key].details.authors[0].name;
+								book.authorFullName = data[key].details.authors[0].name;
 							}
 							
 							// revision

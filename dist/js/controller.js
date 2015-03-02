@@ -11,8 +11,7 @@ console.log(app);
 //After entering in book information, the book is submitted to the database
 function submit() {
 	// $('#myModal').modal('hide');
-	var authorLast = document.getElementById("authorLast").value;
-	var authorFirst = document.getElementById("authorFirst").value;
+	var authorFullName = document.getElementById("authorFullName").value;
 	var bookSubtitle = document.getElementById("bookSubtitle").value;
 	var edition = document.getElementById("edition").value;
 	var bookTitle = document.getElementById("bookTitle").value;
@@ -21,8 +20,7 @@ function submit() {
 	var price = document.getElementById("price").value;
 
 	var book = app.schema.book();
-	book.authorLastName = authorLast;
-	book.authorFirstName = authorFirst;
+	book.authorFullName = authorFullName;
 	book.subTitle = bookSubtitle;
 	book.edition = edition;
 	book.title = bookTitle;
@@ -80,7 +78,7 @@ function searchBook() {
 
 			var h4 = document.createElement("h4");
 			h4.className = "list-group-item-heading";
-			h4.innerHTML = db[i].authorFirstName + " " + db[i].authorLastName;
+			h4.innerHTML = db[i].authorFullName;
 
 			var pEdition = document.createElement("p");
 			pEdition.className = "list-group-item-text";
@@ -117,16 +115,11 @@ function fillOutForm(book)
 	{
 		document.getElementById("bookSubtitle").value = book.subtitle;
 	}
-	// Author first name
-	if (book.authorFirstName && book.authorFirstName.length)
+	// Author full name
+	if (book.authorFullName && book.authorFullName.length)
 	{
-		document.getElementById("authorFirst").value = book.authorFirstName;
+		document.getElementById("authorFullName").value = book.authorFullName;
 	}
-	// Author last name
-	//if (book.subtitle && book.subtitle.length)
-	//{
-	//	document.getElementById("bookSubtitle").value(book.subtitle);
-	//}
 	// Edition
 	if (book.edition && book.edition.length)
 	{

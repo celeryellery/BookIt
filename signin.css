@@ -4,11 +4,11 @@ body {
   background-color: #eee;
 }
 
-.form-signin {
+/*.form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
-}
+}*/
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
@@ -45,4 +45,13 @@ body {
 
 .bookit {
   margin: auto;
+}
+
+#subcontainer {
+  margin: auto;
+  width: 50%;
+}
+
+#loginBtn, #submitBtn {
+  width: 30%;
 }

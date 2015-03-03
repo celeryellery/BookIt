@@ -3,7 +3,7 @@ window.onload = function() {
 	document.getElementById("closeConfirm").onclick = hideConfirm;
 	document.getElementById("closeReject").onclick = hideReject;
 	document.getElementById("searchBtn").onclick = searchBook;
-	document.getElementById("openLibraryBtn").onclick = queryOpenLibrary;
+	document.getElementById("isbn").onchange = queryOpenLibrary;
 }
 
 console.log(app);
@@ -146,6 +146,8 @@ function validateIsbn(isbn)
 
 function fillOutForm(book)
 {
+	// clear the form of previous information before auto-filling
+	clearFormData();
 	// title
 	if (book.title && book.title.length)
 	{
@@ -166,4 +168,12 @@ function fillOutForm(book)
 	{
 		document.getElementById("edition").value = book.edition;
 	}
+}
+
+function clearFormData()
+{
+	document.getElementById("bookTitle").value = "";
+	document.getElementById("bookSubtitle").value = "";
+	document.getElementById("authorFullName").value = "";
+	document.getElementById("edition").value = "";
 }

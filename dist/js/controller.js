@@ -177,3 +177,8 @@ function clearFormData()
 	document.getElementById("authorFullName").value = "";
 	document.getElementById("edition").value = "";
 }
+
+function isLoggedIn()
+{
+	return app.sessionDatabase.read() === true;
+}

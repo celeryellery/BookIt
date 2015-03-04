@@ -20,6 +20,7 @@ function login() {
 		alert("The email " + email + " does not have an existing account.");
 	} else {
 		window.location = "MainPage.html";
+		app.sessionDatabase.write(true);
 	}
 }
 

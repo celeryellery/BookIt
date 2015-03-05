@@ -1,4 +1,9 @@
 window.onload = function() {
+	$(document).keypress(function(e) {
+	    if(e.which == 13) {
+	        login();
+	    }
+	});
 	document.getElementById("loginBtn").onclick = login;
 }
 

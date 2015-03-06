@@ -18,7 +18,9 @@ app.schema = function()
 					subTitle: null,
 					edition: null,
 					ISBN: null,
-					price: null};
+					price: null,
+					user: null,
+					seller: null};
 		return obj;
 /*
 		//subject = []; // optional (from openlibrary)

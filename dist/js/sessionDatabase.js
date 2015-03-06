@@ -3,7 +3,7 @@
 //
 app.sessionDatabase = function()
 {
-	var key = "LoggedIn";
+	var key = "CurrentUser";
 	
 	// public methods
     function supported()

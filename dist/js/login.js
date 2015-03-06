@@ -5,6 +5,13 @@ window.onload = function() {
 	    }
 	});
 	document.getElementById("loginBtn").onclick = login;
+	
+	// add a user object to session storage to keep track of
+	// who is currently logged in, who is logged out by default
+	var user = {email: "",
+				password: "",
+				LoggedIn: false}
+	app.sessionDatabase.write(user);
 }
 
 //Makes the proper checks to see if the textfields are filled in properly and if the account exists, then lets users
@@ -25,7 +32,15 @@ function login() {
 		alert("The email " + email + " does not have an existing account.");
 	} else {
 		window.location = "MainPage.html";
-		app.sessionDatabase.write(true);
+		
+		// store the user's information in sessionStorage so we can
+		// determine if someone is currently logged in, and have information
+		// on the user that is currently logged in for creating a book post
+		// with proper information about the seller
+		var user = {email: email, 
+					password: password,
+					LoggedIn: true}
+		app.sessionDatabase.write(user)
 	}
 }
 

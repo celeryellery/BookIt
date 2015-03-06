@@ -197,10 +197,17 @@ function clearFormData()
 
 function isLoggedIn()
 {
-	return app.sessionDatabase.read() === true;
+	var user = app.sessionDatabase.read();
+	return user.isLoggedIn === true;
 }
 
-function logout() {
-	app.sessionDatabase.write(false);
+function logout() 
+{
+	// log the user out and create an empty user that is not logged in
+	// as a default
+	var user = {email: "",
+				password: "",
+				LoggedIn: false}
+	app.sessionDatabase.write(user);
 	window.location = "SignIn.html";
 }

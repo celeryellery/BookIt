@@ -4,6 +4,11 @@ window.onload = function() {
 	        searchBook();
 	    }
 	});
+	$("#myModal").keypress(function(e) {
+	    if(e.which == 13) {
+	        submit();
+	    }
+	});
 	document.getElementById("submitBtn").onclick = submit;
 	document.getElementById("closeConfirm").onclick = hideConfirm;
 	document.getElementById("closeReject").onclick = hideReject;
@@ -15,7 +20,6 @@ console.log(app);
 
 //After entering in book information, the book is submitted to the database
 function submit() {
-	$('#myModal').modal('hide');
 	var authorFullName = document.getElementById("authorFullName").value;
 	var bookSubtitle = document.getElementById("bookSubtitle").value;
 	var edition = document.getElementById("edition").value;
@@ -34,6 +38,7 @@ function submit() {
 		alert("Please enter at least the book title, author, and your selling price to submit");
 		return;
 	}
+	$('#myModal').modal('hide');
 	if (isSupported()) {
 		var db = app.database.read();
 		db.push(book);
@@ -60,6 +65,7 @@ function isSupported() {
 function searchBook() {
 	var term = document.getElementById("searchBar").value;
 	if (term == "") {
+		alert("Please enter a search term");
 		return;
 	}
 	var list = document.getElementById("list");

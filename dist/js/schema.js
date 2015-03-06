@@ -19,7 +19,6 @@ app.schema = function()
 					edition: null,
 					ISBN: null,
 					price: null,
-					user: null,
 					seller: null};
 		return obj;
 /*

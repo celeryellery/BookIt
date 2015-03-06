@@ -35,6 +35,12 @@ function submit() {
 	book.title = bookTitle;
 	book.ISBN = isbn;
 	book.price = price;
+	
+	// find out who is currently logged in and add that user's
+	// email to the book object before adding it to the database
+	var currentUser = app.sessionDatabase.read();
+	book.seller = currentUser.email;
+	
 	if (bookTitle == "" || authorFullName == "" || price == "") {
 		alert("Please enter at least the book title, author, and your selling price to submit");
 		return;

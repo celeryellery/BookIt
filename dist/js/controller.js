@@ -14,6 +14,7 @@ window.onload = function() {
 	document.getElementById("closeReject").onclick = hideReject;
 	document.getElementById("searchBtn").onclick = searchBook;
 	document.getElementById("isbn").onchange = queryOpenLibrary;
+	document.getElementById("logoutBtn").onclick = logout;
 }
 
 console.log(app);
@@ -197,4 +198,9 @@ function clearFormData()
 function isLoggedIn()
 {
 	return app.sessionDatabase.read() === true;
+}
+
+function logout() {
+	app.sessionDatabase.write(false);
+	window.location = "SignIn.html";
 }

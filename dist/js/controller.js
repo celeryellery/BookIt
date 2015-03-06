@@ -84,6 +84,11 @@ function searchBook() {
 		if (db[i] == null) {
 			return;
 		}
+		// check that the object in db is a book
+		if (!db[i].hasOwnProperty("title")){
+			continue;
+		}
+		
 		var title = db[i].title;
 		console.log(title);
 		if (title.toLowerCase().indexOf(term.toLowerCase()) != -1) {

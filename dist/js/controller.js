@@ -14,7 +14,7 @@ window.onload = function() {
 	document.getElementById("closeReject").onclick = hideReject;
 	document.getElementById("searchBtn").onclick = searchBook;
 	document.getElementById("isbn").onchange = queryOpenLibrary;
-	document.getElementById("logoutBtn").onclick = logout;
+	document.getElementById("confirmLogout").onclick = logout;
 }
 
 console.log(app);

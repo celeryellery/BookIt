@@ -1,4 +1,9 @@
 window.onload = function() {
+	$("#searchBar").keypress(function(e) {
+	    if(e.which == 13) {
+	        searchBook();
+	    }
+	});
 	document.getElementById("submitBtn").onclick = submit;
 	document.getElementById("closeConfirm").onclick = hideConfirm;
 	document.getElementById("closeReject").onclick = hideReject;
@@ -10,7 +15,7 @@ console.log(app);
 
 //After entering in book information, the book is submitted to the database
 function submit() {
-	// $('#myModal').modal('hide');
+	$('#myModal').modal('hide');
 	var authorFullName = document.getElementById("authorFullName").value;
 	var bookSubtitle = document.getElementById("bookSubtitle").value;
 	var edition = document.getElementById("edition").value;
@@ -25,7 +30,10 @@ function submit() {
 	book.title = bookTitle;
 	book.ISBN = isbn;
 	book.price = price;
-
+	if (bookTitle == "" || authorFullName == "" || price == "") {
+		alert("Please enter at least the book title, author, and your selling price to submit");
+		return;
+	}
 	if (isSupported()) {
 		var db = app.database.read();
 		db.push(book);
@@ -59,12 +67,13 @@ function searchBook() {
 	
 	var db = app.database.read();
 	console.log("db", db);
-	for (var i = db.length - 1; i > 0; i--) {
+	for (var i = 0; i < db.length; i++) {
 		if (db[i] == null) {
 			return;
 		}
 		var title = db[i].title;
-		if (term.toLowerCase() == title.toLowerCase()) {
+		console.log(title);
+		if (title.toLowerCase().indexOf(term.toLowerCase()) != -1) {
 			var a = document.createElement('a');
 			a.className = "list-group-item";
 			a.setAttribute('href', "#");
@@ -93,6 +102,7 @@ function searchBook() {
 			list.appendChild(a);
 		}
 	}
+	$('#bookModal').modal('show');
 }
 
 function queryOpenLibrary()

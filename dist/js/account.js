@@ -36,7 +36,7 @@ function createAccount() {
 			db.push(user);
 			app.database.write(db);
 			console.log("db", db);
-			alert("Account for " + email + " created!");
+			alert("Account for " + email + " created! Please login now.");
 			window.location = "SignIn.html";
 		}
 	}

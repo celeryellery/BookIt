@@ -41,8 +41,8 @@ function submit() {
 	var currentUser = app.sessionDatabase.read();
 	book.seller = currentUser.email;
 	
-	if (bookTitle == "" || authorFullName == "" || price == "") {
-		alert("Please enter at least the book title, author, and your selling price to submit");
+	if (bookTitle == "" || authorFullName == "" || price == "" || edition == "") {
+		alert("Please fill in all of the required fields.");
 		return;
 	}
 	$('#myModal').modal('hide');

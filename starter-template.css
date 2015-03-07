@@ -18,6 +18,11 @@ body {
 #logoutBtn {
 	margin-left: 2%;
 }
+
+.form-group.required .control-label:after { 
+   content:" *";
+   color:red;
+}
 /*
 .addButton {
 	position: absolute;

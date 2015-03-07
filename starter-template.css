@@ -28,3 +28,7 @@ body {
 	position: absolute;
 	right: 100%;
 }*/
+
+	#cycleLogo {
+    float: right;
+	}

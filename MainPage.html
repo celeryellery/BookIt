@@ -71,7 +71,7 @@
                 <input type="text" id="isbn" class="form-control">
               </div>
               <div class="form-group">
-                <label>Title</label>
+                <label>Title <span style="color:red;">*</span></label>
                 <input type="text" id="bookTitle" class="form-control" required>
               </div>
               <div class="form-group">
@@ -79,7 +79,7 @@
                 <input type="text" id="bookSubtitle" class="form-control">
               </div>
               <div class="form-group">
-                <label>Author's Full Name</label>
+                <label>Author's Full Name <span style="color:red;">*</span></label>
                 <input type="text" id="authorFullName" class="form-control" required>
               </div>
               <div class="form-group">
@@ -87,11 +87,14 @@
                 <input type="text" id="edition" class="form-control" required>
               </div>
               <div class="form-group">
-                <label>Price</label>
+                <label>Price <span style="color:red;">*</span></label>
                 <div class = "input-group">
                   <span class="input-group-addon" id="basic-addon1">$</span>
                   <input type="text" id="price" class="form-control" required>
                 </div>
+              </div>
+              <div class="form-group">
+                <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
               </div>
             </form>
           </div>
@@ -117,7 +120,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="MainPage.html">Home</a></li>
             <li><a href="About.html">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="Bookit Test Contact Page.html">Contact</a></li>
           </ul>
             <p class = "navbar-btn">
               <button type="button" id="logoutBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#logoutModal">

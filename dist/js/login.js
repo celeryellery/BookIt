@@ -28,6 +28,10 @@ function login() {
 		alert("Please enter an email of the format example@uw.edu or example@uwb.edu");
 		return;
 	}
+	if (passwordMismatch(email, password)) {
+		alert("The password that was entered is incorrect.");
+		return;
+	}
 	if (!accountExists(email, password)) {
 		alert("The email " + email + " does not have an existing account.");
 	} else {
@@ -56,7 +60,16 @@ function accountExists(email, password) {
 	console.log(db);
 	for (var i = 0; i < db.length; i++) {
 		if (db[i].email == email && db[i].password == password) {
-			// $('#existsError').show();
+			return true;
+		}
+	}
+	return false;
+}
+
+function passwordMismatch(email, password) {
+	var db = app.database.read();
+	for (var i = 0; i < db.length; i++) {
+		if (db[i].email == email && db[i].password != password) {
 			return true;
 		}
 	}

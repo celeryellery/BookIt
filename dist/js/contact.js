@@ -1,7 +1,10 @@
 window.onload = function() {
-	document.getElementById("confirmLogout").onclick = logout;
+	document.getElementById("logoutBtn").onclick = logout;
 	document.getElementById("submit").onclick = submit; 
-	spamChecker(); 
+	spamChecker();
+	if (!isLoggedIn()) {
+		setupGuestCase();
+	}
 }
 
 var spamValue1 = Math.round(Math.random() * 10); 
@@ -49,4 +52,18 @@ function submit()
 		alert("You're bad at this."); 
 	}
 
+}
+
+//Changes the html to display a different page for users who are not logged in
+function setupGuestCase() {
+	var btn = document.getElementById("logoutBtn");
+	btn.innerHTML = "Log in to access extra features";
+
+	var profile = document.getElementById("profileItem");
+	profile.innerHTML = "";
+	var a = document.createElement("a");
+	a.innerHTML = "Profile"
+	a.setAttribute("href", "#");
+	profile.appendChild(a);
+	profile.setAttribute("class", "disabled");
 }

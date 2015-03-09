@@ -295,7 +295,7 @@ function logout()
 	window.location = "SignIn.html";
 }
 
-//CHanges the Html
+//Changes the html to display a different page for users who are not logged in
 function setupGuestCase() {
 	var btn = document.getElementById("logoutBtn");
 	btn.innerHTML = "Log in to access extra features";

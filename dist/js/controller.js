@@ -9,12 +9,15 @@ window.onload = function() {
 	        submit();
 	    }
 	});
+	if (!isLoggedIn()) {
+		setupGuestCase();
+	}
 	document.getElementById("submitBtn").onclick = submit;
 	document.getElementById("closeConfirm").onclick = hideConfirm;
 	document.getElementById("closeReject").onclick = hideReject;
 	document.getElementById("searchBtn").onclick = searchBook;
 	document.getElementById("isbn").onchange = queryOpenLibrary;
-	document.getElementById("confirmLogout").onclick = logout;
+	document.getElementById("logoutBtn").onclick = logout;
 }
 
 console.log(app);
@@ -286,7 +289,8 @@ function clearAllFormData()
 function isLoggedIn()
 {
 	var user = app.sessionDatabase.read();
-	return user.isLoggedIn === true;
+	console.log(user);
+	return user.LoggedIn === true;
 }
 
 function logout() 
@@ -298,4 +302,20 @@ function logout()
 				LoggedIn: false}
 	app.sessionDatabase.write(user);
 	window.location = "SignIn.html";
+}
+
+//CHanges the Html
+function setupGuestCase() {
+	var btn = document.getElementById("logoutBtn");
+	btn.innerHTML = "Log in to access extra features";
+	var addbtn = document.getElementById("addBtn");
+	addbtn.setAttribute("disabled", "disabled");
+
+	var profile = document.getElementById("profileItem");
+	profile.innerHTML = "";
+	var a = document.createElement("a");
+	a.innerHTML = "Profile"
+	a.setAttribute("href", "#");
+	profile.appendChild(a);
+	profile.setAttribute("class", "disabled");
 }

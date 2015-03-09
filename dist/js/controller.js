@@ -222,12 +222,24 @@ function fillOutForm(book)
 	}
 }
 
+// clears data fields that will be replaced with openlibrary.org data,
+// isbn and price are not cleared
 function clearFormData()
 {
 	document.getElementById("bookTitle").value = "";
 	document.getElementById("bookSubtitle").value = "";
 	document.getElementById("authorFullName").value = "";
 	document.getElementById("edition").value = "";
+}
+
+function clearAllFormData()
+{
+	document.getElementById("isbn").value = "";
+	document.getElementById("bookTitle").value = "";
+	document.getElementById("bookSubtitle").value = "";
+	document.getElementById("authorFullName").value = "";
+	document.getElementById("edition").value = "";
+	document.getElementById("price").value = "";
 }
 
 function isLoggedIn()

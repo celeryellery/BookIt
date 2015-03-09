@@ -89,6 +89,14 @@ function searchBook() {
 	// create and display list of search results
 	for (var i = 0; i < books.length; i++) 
 	{
+        //container
+        var div = document.createElement('div');
+        var sec = document.createElement( 'section');   
+        
+        div.setAttribute("ID", "bookInfo");
+        sec.setAttribute("ID", "book_details");
+        
+        //div container
 		var a = document.createElement('a');
 		a.className = "list-group-item";
 		a.setAttribute('href', "#");
@@ -101,20 +109,42 @@ function searchBook() {
 		var h4 = document.createElement("h4");
 		h4.className = "list-group-item-heading";
 		h4.innerHTML = books[i].authorFullName;
-
+        
 		var pEdition = document.createElement("p");
 		pEdition.className = "list-group-item-text";
-		pEdition.innerHTML = "Edition " + books[i].edition;			
-
-		var pPrice = document.createElement("p");
+		pEdition.innerHTML = "Edition " + books[i].edition;		
+        
+        var pPrice = document.createElement("h4");
+        pPrice.setAttribute('align', 'right');
 		pPrice.className = "list-group-item-text";
 		pPrice.innerHTML = "$" + books[i].price;
+       
+        //sec container
+        var bCon = document.createElement("p");
+        bCon.setAttribute('align', 'right');
+		bCon.className = "list-group-item-text";
+		bCon.innerHTML = "Condition:" + books[i].condition;
+        
+        var aEmail = document.createElement('a');
+         aEmail.setAttribute('align', 'right');
+        
+        aEmail.innerHTML = " Email Seller";
+		aEmail.className = "list-group-item";
+        var email = "mailto:" + books[i].seller; //temp string 
+		aEmail.setAttribute('href', email);
+
 
 		a.appendChild(h3);
 		a.appendChild(h4);
 		a.appendChild(pEdition);
-		a.appendChild(pPrice);
-		list.appendChild(a);
+        div.appendChild(a);
+        div.appendChild(sec);
+        
+        sec.appendChild(pPrice);
+        sec.appendChild(bCon);
+        sec.appendChild(aEmail);
+        
+		list.appendChild(div);
 	}
 		
 	$('#bookModal').modal('show');

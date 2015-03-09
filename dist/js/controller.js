@@ -114,7 +114,6 @@ function searchBook() {
 		var h4 = document.createElement("h4");
 		h4.className = "list-group-item-heading";
 		h4.innerHTML = books[i].authorFullName;
-<<<<<<< HEAD
         
 		var pEdition = document.createElement("p");
 		pEdition.className = "list-group-item-text";
@@ -122,14 +121,6 @@ function searchBook() {
         
         var pPrice = document.createElement("h4");
         pPrice.setAttribute('align', 'right');
-=======
-		
-		var pEdition = document.createElement("p");
-		pEdition.className = "list-group-item-text";
-		pEdition.innerHTML = "Edition: " + books[i].edition;			
-
-		var pPrice = document.createElement("p");
->>>>>>> origin/master
 		pPrice.className = "list-group-item-text";
 		pPrice.innerHTML = "$" + books[i].price;
        

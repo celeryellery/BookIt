@@ -32,7 +32,7 @@ var spamAnswer = spamValue1 + spamValue2;
 
 var label = document.getElementById("spamChecker"); 
 
-label.innerHTML = "What is " + spamValue1 + " + " + spamValue2 + "?"; 
+label.innerHTML = "What is " + spamValue1 + " + " + spamValue2 + "? (Prove you're a human)"; 
 
 }
 

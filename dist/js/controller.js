@@ -104,7 +104,7 @@ function searchBook() {
 
 		var pEdition = document.createElement("p");
 		pEdition.className = "list-group-item-text";
-		pEdition.innerHTML = "Edition " + books[i].edition;			
+		pEdition.innerHTML = "Edition: " + books[i].edition;			
 
 		var pPrice = document.createElement("p");
 		pPrice.className = "list-group-item-text";

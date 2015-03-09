@@ -1,6 +1,7 @@
 window.onload = function() {
-	var email = document.getElementById("emailField").value
+	var email = document.getElementById("emailField");
 	var user = app.sessionDatabase.read();
+	console.log(user.email);
 	email.innerHTML += user.email;
 	document.getElementById("confirmLogout").onclick = logout;
 }

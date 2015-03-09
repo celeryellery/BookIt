@@ -70,8 +70,6 @@ function isSupported() {
 
 //Search for books in the database given a search term 
 function searchBook() {
-	// causes the database search to look for items based on "title"
-	var searchKey = "title";
 	// database will search for an exact match of term
 	// in the title property of each stored book object
 	var term = document.getElementById("searchBar").value;
@@ -84,7 +82,11 @@ function searchBook() {
 	
 	// search the database and return a list of all
 	// books that match the search criteria
-	var books = searchDatabase(term, searchKey);
+	var booksByTitle = searchDatabase(term, "title");
+	var booksByAuthor = searchDatabase(term, "authorFullName");
+	
+	// combine booksByTitle and booksByAuthor into a single list of book results
+	var books = booksByTitle.concat(booksByAuthor);
 
 	// create and display list of search results
 	for (var i = 0; i < books.length; i++) 
@@ -103,12 +105,13 @@ function searchBook() {
 
 		var h3 = document.createElement("h3");
 		h3.className = "list-group-item-heading";
-		h3.innerHTML = books[i][searchKey];
+		h3.innerHTML = books[i].title;
 		h3.style.fontWeight = "bold";
 
 		var h4 = document.createElement("h4");
 		h4.className = "list-group-item-heading";
 		h4.innerHTML = books[i].authorFullName;
+<<<<<<< HEAD
         
 		var pEdition = document.createElement("p");
 		pEdition.className = "list-group-item-text";
@@ -116,6 +119,14 @@ function searchBook() {
         
         var pPrice = document.createElement("h4");
         pPrice.setAttribute('align', 'right');
+=======
+		
+		var pEdition = document.createElement("p");
+		pEdition.className = "list-group-item-text";
+		pEdition.innerHTML = "Edition: " + books[i].edition;			
+
+		var pPrice = document.createElement("p");
+>>>>>>> origin/master
 		pPrice.className = "list-group-item-text";
 		pPrice.innerHTML = "$" + books[i].price;
        
@@ -252,12 +263,24 @@ function fillOutForm(book)
 	}
 }
 
+// clears data fields that will be replaced with openlibrary.org data,
+// isbn and price are not cleared
 function clearFormData()
 {
 	document.getElementById("bookTitle").value = "";
 	document.getElementById("bookSubtitle").value = "";
 	document.getElementById("authorFullName").value = "";
 	document.getElementById("edition").value = "";
+}
+
+function clearAllFormData()
+{
+	document.getElementById("isbn").value = "";
+	document.getElementById("bookTitle").value = "";
+	document.getElementById("bookSubtitle").value = "";
+	document.getElementById("authorFullName").value = "";
+	document.getElementById("edition").value = "";
+	document.getElementById("price").value = "";
 }
 
 function isLoggedIn()

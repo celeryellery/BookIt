@@ -31,6 +31,7 @@ function submit() {
 	var bookTitle = document.getElementById("bookTitle").value;
 	var isbn = document.getElementById("isbn").value;
 	var price = document.getElementById("price").value;
+	var condition = document.getElementById("selectCondition").value;
 	var priceInt = parseFloat(price);
 	var book = app.schema.book();
 	book.authorFullName = authorFullName;
@@ -39,7 +40,7 @@ function submit() {
 	book.title = bookTitle;
 	book.ISBN = isbn;
 	book.price = price;
-	
+	book.condition = condition;
 	// find out who is currently logged in and add that user's
 	// email to the book object before adding it to the database
 	var currentUser = app.sessionDatabase.read();

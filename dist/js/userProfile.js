@@ -5,6 +5,13 @@ window.onload = function() {
 	email.innerHTML += user.email;
 	document.getElementById("confirmLogout").onclick = logout;
 }
+//Matt's for tanner
+fucntion getbooks()
+{
+	var currentUser = app.sessionDatabase.read();
+	var seller = currentUser.email;
+	var books = app.search.searchDatabase(seller, "email", "");
+}
 
 function isLoggedIn()
 {

@@ -50,7 +50,7 @@ function createAccount() {
 
 //Checks if the account already exists
 function accountExists(db, email) {
-	for (var i = db.length - 1; i > 0; i--) {
+	for (var i = db.length - 1; i >= 0; i--) {
 		if (db[i] == null) {
 			return false;
 		}

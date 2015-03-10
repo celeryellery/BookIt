@@ -3,6 +3,8 @@ window.onload = function() {
 	var user = app.sessionDatabase.read();
 	email.innerHTML += user.email;
 	document.getElementById("confirmLogout").onclick = logout;
+	document.getElementById("usernameSubmitBtn").onclick = submitUsername;
+	document.getElementById("passwordSubmitBtn").onclick = submitPassword;
     //searchData();
 }
 //Matt's for tanner
@@ -30,50 +32,82 @@ function logout()
 	window.location = "SignIn.html";
 }
 
+//Checks if the email is in a valid format
+function validateEmail(email){        
+   	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+}    
+
+//Checks if the account already exists
+function accountExists(db, email) {
+	for (var i = db.length - 1; i >= 0; i--) {
+		if (db[i] == null) {
+			return false;
+		}
+		if (db[i].email == email) {
+			return true;
+		}
+	}
+	return false;
+}
 
 //After entering in username change information, the new username is submitted to the database
 function submitUsername() {
-	var currentUsername = user.email;
 	var newUsername = document.getElementById("newUsername").value;
 	var newUsernameConfirm = document.getElementById("newUsernameConfirm").value;
+	var validUsername = validateEmail(newUsername);
+	var db = app.database.read();
 
-	// TODO: Add error checking to see if current username isn't entered correctly, 
-	// or if new username doesn't match confirmed new username
-	
-	user.email = newUsername;
-	
-	clearAllFormData();
-	$('#usernameModal').modal('hide');
-	if (isSupported()) {
-		var db = app.database.read();
-		db.push(book);
-		app.database.write(db);
-		$('#confirm').show();
-	} else {
-		$('#rejected').show();
+	// Format validation
+	if (!validUsername) {
+		alert("Please enter an email of the format example@uw.edu or example@uwb.edu");
+		return;
 	}
+	
+	// Checking that they entered the same username both times
+	if (newUsername != newUsernameConfirm) {
+		alert("Please make sure you typed the same username both times.");
+		return;
+	}
+	
+	// Checking that their new username doesn't belong to any other users
+	if (accountExists(db, newUsername)) {
+		alert("An acount with this username already exists. Please choose a different username.");
+		return;
+	}
+	
+	var currentUser = app.sessionDatabase.read();
+	currentUser.email = newUsername;
+	db.push(currentUser);
+	app.sessionDatabase.write(currentUser);
+	
+	document.getElementById("newUsername").value = "";
+	document.getElementById("newUsernameConfirm").value = "";
+	$('#usernameModal').modal('hide');
+	
+	//Refresh page to make new username appear in profile
+	location.reload();
 }
 
 //After entering in password change information, the new password is submitted to the database
 function submitPassword() {
-	var currentPassword = user.password;
+	var currentUser = app.sessionDatabase.read();
+	var db = app.database.read();
+	var currentPassword = currentUser.password;
 	var newPassword = document.getElementById("newPassword").value;
 	var newPasswordConfirm = document.getElementById("newPasswordConfirm").value;
 
 		// TODO: Add error checking to see if current password isn't entered correctly, 
 	// or if new password doesn't match confirmed new password
-	user.password = newPassword;
+	currentUser.password = newPassword;
+	db.push(currentUser);
+	app.sessionDatabase.write(currentUser);
 	
-	clearAllFormData();
+	document.getElementById("currentPassword").value = "";
+	document.getElementById("newPassword").value = "";
+	document.getElementById("newPasswordConfirm").value = "";
 	$('#passwordModal').modal('hide');
-	if (isSupported()) {
-		var db = app.database.read();
-		db.push(book);
-		app.database.write(db);
-		$('#confirm').show();
-	} else {
-		$('#rejected').show();
-	}
+
 }
 /*
 function searchData(){

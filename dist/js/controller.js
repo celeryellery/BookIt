@@ -52,6 +52,7 @@ function submit() {
 		alert("Please use a  non-negative price");
 		return;
 	}
+	clearAllFormData();
 	$('#myModal').modal('hide');
 	if (isSupported()) {
 		var db = app.database.read();

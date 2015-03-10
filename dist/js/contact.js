@@ -13,7 +13,7 @@ var spamValue2 = Math.round(Math.random() * 10);
 function isLoggedIn()
 {
 	var user = app.sessionDatabase.read();
-	return user.isLoggedIn === true;
+	return user.LoggedIn === true;
 }
 
 function logout() 
@@ -45,7 +45,7 @@ function submit()
 	var answer = document.getElementById("InputReal").value; 
 	if (answer == (spamValue1 + spamValue2))
 	{
-		alert("Holy shit, it worked."); 
+		alert("OMG, it worked."); 
 	}
 	else
 	{
@@ -66,4 +66,7 @@ function setupGuestCase() {
 	a.setAttribute("href", "#");
 	profile.appendChild(a);
 	profile.setAttribute("class", "disabled");
+
+	var submit = document.getElementById("submit");
+	submit.setAttribute("disabled", "disabled");
 }

@@ -8,7 +8,8 @@ window.onload = function() {
 function isLoggedIn()
 {
 	var user = app.sessionDatabase.read();
-	return user.isLoggedIn === true;
+	console.log(user);
+	return user.LoggedIn === true;
 }
 
 function logout() 

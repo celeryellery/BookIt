@@ -17,6 +17,7 @@ body {
 
 #logoutBtn {
 	margin-left: 2%;
+	background-color: #005263;
 }
 
 .form-group.required .control-label:after { 
@@ -29,6 +30,14 @@ body {
 	right: 100%;
 }*/
 
-	#cycleLogo {
+#cycleLogo {
     float: right;
-	}
+}
+
+#addBtn {
+	background-color: #EFBE67;
+}
+
+ #resetUsernameBtn, #resetPasswordBtn {
+ 	background-color: #005263;
+ }

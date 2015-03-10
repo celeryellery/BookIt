@@ -90,11 +90,7 @@ function searchBook() {
 	
 	// search the database and return a list of all
 	// books that match the search criteria
-	var booksByTitle = searchDatabase(term, "title");
-	var booksByAuthor = searchDatabase(term, "authorFullName");
-	
-	// combine booksByTitle and booksByAuthor into a single list of book results
-	var books = booksByTitle.concat(booksByAuthor);
+	var books = searchDatabase(term, "title", "authorFullName");
 
 	// create and display list of search results
 	for (var i = 0; i < books.length; i++) 
@@ -165,7 +161,7 @@ function searchBook() {
 // with a value equal to the search term
 // i.e. searchDatabase("The Lord of the Rings", "title") (returns books)
 // or   searchDatabase("matt.stewart.us@gmail.com", "email") (returns users)
-function searchDatabase(term, property)
+function searchDatabase(term, property, property2)
 {
 	var db = app.database.read();
 	var searchItems = []; //array of items that match search criteria
@@ -173,13 +169,12 @@ function searchDatabase(term, property)
 	{
 		// if the object has the specified property,
 		// check if the property has the desired value
-		if (!db[i].hasOwnProperty(property))
-		{
-			continue;
-		}
-		var bookTitle = db[i][property];
 		// if the object is what was being searched for, add it to the list of search items
-		if (db[i][property].toLowerCase().indexOf(term.toLowerCase()) != -1)
+		if (db[i].hasOwnProperty(property) && db[i][property].toLowerCase().indexOf(term.toLowerCase()) != -1)
+		{
+			searchItems.push(db[i]);
+		}
+		else if (db[i].hasOwnProperty(property2) && db[i][property2].toLowerCase().indexOf(term.toLowerCase()) != -1)
 		{
 			searchItems.push(db[i]);
 		}

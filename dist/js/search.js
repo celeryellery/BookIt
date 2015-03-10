@@ -24,17 +24,10 @@ app.search = function()
 
 		// create and display list of search results
 		for (var i = 0; i < books.length; i++) 
-		{
-			//container
-			var bookDiv = document.createElement('div');
-            var div = document.createElement('div');
-			var sec = document.createElement( 'section');   
-            bookDiv.setAttribute("ID", "bookDiv");
-			div.setAttribute("ID", "bookInfo");
-			sec.setAttribute("ID", "book_details");
-			
+		{	
 			//div container
 			var a = document.createElement('a');
+			a.setAttribute("id", "result")
 			a.className = "list-group-item";
 			a.setAttribute('href', "#");
 
@@ -42,48 +35,57 @@ app.search = function()
 			h3.className = "list-group-item-heading";
 			h3.innerHTML = books[i].title;
 			h3.style.fontWeight = "bold";
+			h3.style.color = "#005263";
 
 			var h4 = document.createElement("h4");
 			h4.className = "list-group-item-heading";
-			h4.innerHTML = books[i].authorFullName;
+			h4.innerHTML = "By " + books[i].authorFullName;
+			h4.style.color = "#005263";
 			
 			var pEdition = document.createElement("p");
 			pEdition.className = "list-group-item-text";
-			pEdition.innerHTML = "Edition " + books[i].edition;		
+			pEdition.innerHTML = "Edition: " + books[i].edition;		
+			pEdition.style.color = "#005263";
 			
-			var pPrice = document.createElement("h4");
-			pPrice.setAttribute('align', 'right');
+			var pPrice = document.createElement("p");
+			// pPrice.setAttribute('align', 'right');
 			pPrice.className = "list-group-item-text";
 			pPrice.innerHTML = "$" + books[i].price;
+			pPrice.style.color = "#005263";
 		   
 			//sec container
 			var bCon = document.createElement("p");
-			bCon.setAttribute('align', 'right');
+			// bCon.setAttribute('align', 'right');
 			bCon.className = "list-group-item-text";
-			bCon.innerHTML = "Condition:" + books[i].condition;
+			bCon.innerHTML = "Condition: " + books[i].condition;
+			bCon.style.color = "#005263";
 			
-			var aEmail = document.createElement('a');
-			 aEmail.setAttribute('align', 'right');
-			
-			//aEmail.innerHTML = " Email Seller";
-			aEmail.className = "list-group-item";
-			var email = "mailto:" + books[i].seller; //temp string 
-			aEmail.setAttribute('href', email);
+			// var aEmail = document.createElement('a');
+			// aEmail.innerHTML = "Email the seller: " + books[i].seller;
+			// aEmail.className = "list-group-item-text";
+			// var email = "mailto:" + books[i].seller; //temp string 
+			// aEmail.setAttribute('href', email);
 
+			var alink = document.createElement('a');
+			alink.setAttribute("href", "mailto:" + books[i].seller);
+			alink.innerHTML = "Email the seller ";
+			var img = document.createElement('img');
+			img.setAttribute("src", "dist/img/mail_thumbnail.png");
+			img.setAttribute("width", "40");
+			img.setAttribute("height", "35");
+			alink.appendChild(img);
 
 			a.appendChild(h3);
 			a.appendChild(h4);
 			a.appendChild(pEdition);
-			div.appendChild(a);
-			div.appendChild(sec);
-			sec.appendChild(pPrice);
-			sec.appendChild(bCon);
-			sec.appendChild(aEmail);
-            
-            bookDiv.appendChild(div);
-			bookDiv.appendChild(sec);
+			// div.appendChild(a);
+			// div.appendChild(sec);
 			
-            list.appendChild(bookDiv);
+			a.appendChild(pPrice);
+			a.appendChild(bCon);
+			a.appendChild(alink);
+			
+			list.appendChild(a);
 		}
 			
 		$('#bookModal').modal('show');

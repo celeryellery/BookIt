@@ -36,8 +36,14 @@ function createAccount() {
 			db.push(user);
 			app.database.write(db);
 			console.log("db", db);
-			alert("Account for " + email + " created! Please login now.");
-			window.location = "SignIn.html";
+			alert("Account for " + email + " created!");
+
+			var user = {email: email, 
+					password: password,
+					LoggedIn: true}
+			app.sessionDatabase.write(user);
+			
+			window.location = "MainPage.html";
 		}
 	}
 }

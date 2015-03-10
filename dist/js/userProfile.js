@@ -1,13 +1,12 @@
 window.onload = function() {
 	var email = document.getElementById("emailField");
 	var user = app.sessionDatabase.read();
-	console.log(user.email);
 	email.innerHTML += user.email;
 	document.getElementById("confirmLogout").onclick = logout;
-    searchData();
+    //searchData();
 }
 //Matt's for tanner
-fucntion getbooks()
+function getbooks()
 {
 	var currentUser = app.sessionDatabase.read();
 	var seller = currentUser.email;
@@ -31,7 +30,6 @@ function logout()
 	window.location = "SignIn.html";
 }
 
-<<<<<<< Updated upstream
 
 //After entering in username change information, the new username is submitted to the database
 function submitUsername() {
@@ -77,7 +75,7 @@ function submitPassword() {
 		$('#rejected').show();
 	}
 }
-=======
+/*
 function searchData(){
 
 var db = app.database.read();
@@ -91,7 +89,7 @@ var row = document.createElement('tr');
 var rowData = document.createElement ('th');
 rowdata.innerHTML = "Book Title"; 
 }
-/*
+
 for (var i = 0; i < books.length; i++) 
 	{
         //container
@@ -187,4 +185,3 @@ function queryOpenLibrary()
 	}
 }
 
->>>>>>> Stashed changes

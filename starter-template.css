@@ -38,6 +38,6 @@ body {
 	background-color: #EFBE67;
 }
 
- #resetUsernameBtn, #resetPasswordBtn {
+ #resetUsernameBtn, #resetPasswordBtn, #submitBtn, #helpBtn {
  	background-color: #005263;
  }

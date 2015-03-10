@@ -1,6 +1,10 @@
 window.onload = function() {
 	document.getElementById("logoutBtn").onclick = logout;
 	document.getElementById("submit").onclick = submit; 
+	var email = document.getElementById("emailField");
+	var user = app.sessionDatabase.read();
+	console.log(user.email);
+	email.value = user.email;
 	spamChecker();
 	if (!isLoggedIn()) {
 		setupGuestCase();

@@ -30,7 +30,7 @@ function submit() {
 	var bookTitle = document.getElementById("bookTitle").value;
 	var isbn = document.getElementById("isbn").value;
 	var price = document.getElementById("price").value;
-
+	var priceInt = parseFloat(price);
 	var book = app.schema.book();
 	book.authorFullName = authorFullName;
 	book.subTitle = bookSubtitle;
@@ -46,6 +46,10 @@ function submit() {
 	
 	if (bookTitle == "" || authorFullName == "" || price == "" || edition == "") {
 		alert("Please fill in all of the required fields.");
+		return;
+	}
+	if (priceInt < 0.0) {
+		alert("Please use a  non-negative price");
 		return;
 	}
 	$('#myModal').modal('hide');

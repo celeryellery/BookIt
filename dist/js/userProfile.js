@@ -4,6 +4,7 @@ window.onload = function() {
 	console.log(user.email);
 	email.innerHTML += user.email;
 	document.getElementById("confirmLogout").onclick = logout;
+    searchData();
 }
 //Matt's for tanner
 fucntion getbooks()
@@ -30,6 +31,7 @@ function logout()
 	window.location = "SignIn.html";
 }
 
+<<<<<<< Updated upstream
 
 //After entering in username change information, the new username is submitted to the database
 function submitUsername() {
@@ -75,3 +77,114 @@ function submitPassword() {
 		$('#rejected').show();
 	}
 }
+=======
+function searchData(){
+
+var db = app.database.read();
+var currentUser = app.sessionDatabase.read();
+var book = searchDatabase(currentUser.email, "seller", "");
+var table = document.createElement('table');
+
+table.setAttribute("ID", "bookInfo" +i);
+table.className = "user-listings";
+var row = document.createElement('tr');
+var rowData = document.createElement ('th');
+rowdata.innerHTML = "Book Title"; 
+}
+/*
+for (var i = 0; i < books.length; i++) 
+	{
+        //container
+        
+        //div container
+		var row = document.createElement('tr');
+        
+        
+        
+		var h3 = document.createElement("h3");
+		h3.className = "list-group-item-heading";
+		h3.innerHTML = books[i].title;
+		h3.style.fontWeight = "bold";
+
+		var h4 = document.createElement("h4");
+		h4.className = "list-group-item-heading";
+		h4.innerHTML = books[i].authorFullName;
+        
+		var pEdition = document.createElement("p");
+		pEdition.className = "list-group-item-text";
+		pEdition.innerHTML = "Edition " + books[i].edition;		
+        
+        var pPrice = document.createElement("h4");
+        pPrice.setAttribute('align', 'right');
+		pPrice.className = "list-group-item-text";
+		pPrice.innerHTML = "$" + books[i].price;
+       
+        //sec container
+        var bCon = document.createElement("p");
+        bCon.setAttribute('align', 'right');
+		bCon.className = "list-group-item-text";
+		bCon.innerHTML = "Condition:" + books[i].condition;
+        
+        var aEmail = document.createElement('a');
+         aEmail.setAttribute('align', 'right');
+        
+        aEmail.innerHTML = " Email Seller";
+		aEmail.className = "list-group-item";
+        var email = "mailto:" + books[i].seller; //temp string 
+		aEmail.setAttribute('href', email);
+
+		a.appendChild(h3);
+		a.appendChild(h4);
+		a.appendChild(pEdition);
+        div.appendChild(a);
+        div.appendChild(sec);
+        
+        sec.appendChild(pPrice);
+        sec.appendChild(bCon);
+        sec.appendChild(aEmail);
+ 
+		list.appendChild(div);
+	}
+	*/
+
+// internally search the database for a given "term"
+// and sees which objects have a designated property
+// with a value equal to the search term
+// i.e. searchDatabase("The Lord of the Rings", "title") (returns books)
+// or   searchDatabase("matt.stewart.us@gmail.com", "email") (returns users)
+
+function searchDatabase(term, property, property2)
+{
+	var db = app.database.read();
+	var searchItems = []; //array of items that match search criteria
+	for(var i = 0; i < db.length; i++)
+	{
+		// if the object has the specified property,
+		// check if the property has the desired value
+		// if the object is what was being searched for, add it to the list of search items
+		if (db[i].hasOwnProperty(property) && db[i][property] != null && db[i][property].toLowerCase().indexOf(term.toLowerCase()) != -1)
+		{
+			searchItems.push(db[i]);
+		}
+		else if (db[i].hasOwnProperty(property2) && db[i][property2] != null && db[i][property2].toLowerCase().indexOf(term.toLowerCase()) != -1)
+		{
+			searchItems.push(db[i]);
+		}
+	}
+	return searchItems;
+}
+
+function queryOpenLibrary()
+{
+	var isbn = document.getElementById("isbn").value;
+	if (validateIsbn(isbn))
+	{
+		app.openLibrary.search(isbn, fillOutForm);
+	}
+	else
+	{
+		alert("Please check your ISBN format. Something's not right!");
+	}
+}
+
+>>>>>>> Stashed changes

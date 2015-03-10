@@ -26,9 +26,10 @@ app.search = function()
 		for (var i = 0; i < books.length; i++) 
 		{
 			//container
-			var div = document.createElement('div');
+			var bookDiv = document.createElement('div');
+            var div = document.createElement('div');
 			var sec = document.createElement( 'section');   
-			
+            bookDiv.setAttribute("ID", "bookDiv");
 			div.setAttribute("ID", "bookInfo");
 			sec.setAttribute("ID", "book_details");
 			
@@ -64,7 +65,7 @@ app.search = function()
 			var aEmail = document.createElement('a');
 			 aEmail.setAttribute('align', 'right');
 			
-			aEmail.innerHTML = " Email Seller";
+			//aEmail.innerHTML = " Email Seller";
 			aEmail.className = "list-group-item";
 			var email = "mailto:" + books[i].seller; //temp string 
 			aEmail.setAttribute('href', email);
@@ -75,12 +76,14 @@ app.search = function()
 			a.appendChild(pEdition);
 			div.appendChild(a);
 			div.appendChild(sec);
-			
 			sec.appendChild(pPrice);
 			sec.appendChild(bCon);
 			sec.appendChild(aEmail);
+            
+            bookDiv.appendChild(div);
+			bookDiv.appendChild(sec);
 			
-			list.appendChild(div);
+            list.appendChild(bookDiv);
 		}
 			
 		$('#bookModal').modal('show');

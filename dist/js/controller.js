@@ -18,6 +18,7 @@ window.onload = function() {
 	document.getElementById("searchBtn").onclick = app.search.searchBook;
 	document.getElementById("isbn").onchange = queryOpenLibrary;
 	document.getElementById("logoutBtn").onclick = logout;
+
 }
 
 console.log(app);

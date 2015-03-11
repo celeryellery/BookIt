@@ -93,17 +93,27 @@ function submitUsername() {
 function submitPassword() {
 	var currentUser = app.sessionDatabase.read();
 	var db = app.database.read();
-	var currentPassword = currentUser.password;
+	var oldPassword = currentUser.password;
 	var newPassword = document.getElementById("newPassword").value;
 	var newPasswordConfirm = document.getElementById("newPasswordConfirm").value;
+	
+	// validation: check that the old password is correct
+	if (document.getElementById("oldPassword").value != oldPassword){
+		alert("Old password was entered incorrectly.");
+		return;
+	}
 
-		// TODO: Add error checking to see if current password isn't entered correctly, 
-	// or if new password doesn't match confirmed new password
+	// validation: check that the same password both times
+	if (newPassword != newPasswordConfirm){
+		alert("Please make sure you typed the same password both times.");
+		return;
+	}
+
 	currentUser.password = newPassword;
 	app.search.changeUserPassword(currentUser.email, newPassword); // change permanent user password in local storage
 	app.sessionDatabase.write(currentUser);						   // change current user password in session storage
 	
-	document.getElementById("currentPassword").value = "";
+	document.getElementById("oldPassword").value = "";
 	document.getElementById("newPassword").value = "";
 	document.getElementById("newPasswordConfirm").value = "";
 	$('#passwordModal').modal('hide');

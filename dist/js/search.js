@@ -21,7 +21,8 @@ app.search = function()
 		// search the database and return a list of all
 		// books that match the search criteria
 		var books = searchDatabase(term, "title", "authorFullName");
-
+		var user = app.sessionDatabase.read();
+		
 		// create and display list of search results
 		for (var i = 0; i < books.length; i++) 
 		{	
@@ -66,15 +67,6 @@ app.search = function()
 			// var email = "mailto:" + books[i].seller; //temp string 
 			// aEmail.setAttribute('href', email);
 
-			var alink = document.createElement('a');
-			alink.setAttribute("href", "mailto:" + books[i].seller);
-			alink.innerHTML = "Email the seller ";
-			var img = document.createElement('img');
-			img.setAttribute("src", "dist/img/mail_thumbnail.png");
-			img.setAttribute("width", "40");
-			img.setAttribute("height", "35");
-			alink.appendChild(img);
-
 			a.appendChild(h3);
 			a.appendChild(h4);
 			a.appendChild(pEdition);
@@ -83,8 +75,26 @@ app.search = function()
 			
 			a.appendChild(pPrice);
 			a.appendChild(bCon);
-			a.appendChild(alink);
-			
+
+			//If the user is not logged in, then a warning message is displayed that
+			//does not allow the user to conact the seller
+			if (user.LoggedIn === true) {
+				var alink = document.createElement('a');
+				alink.setAttribute("href", "mailto:" + books[i].seller);
+				alink.innerHTML = "Email the seller ";
+				var img = document.createElement('img');
+				img.setAttribute("src", "dist/img/mail_thumbnail.png");
+				img.setAttribute("width", "40");
+				img.setAttribute("height", "35");
+				alink.appendChild(img);
+				a.appendChild(alink);
+			} else {
+				var warning = document.createElement('p');
+				warning.innerHTML = "Please log in to contact the seller";
+				warning.setAttribute('id', 'warning');
+				a.appendChild(warning);
+			}
+
 			list.appendChild(a);
 		}
 			

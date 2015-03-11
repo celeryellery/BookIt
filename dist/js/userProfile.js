@@ -18,7 +18,7 @@ function getbooks()
 function isLoggedIn()
 {
 	var user = app.sessionDatabase.read();
-	return user.isLoggedIn === true;
+	return user.LoggedIn === true;
 }
 
 function logout() 

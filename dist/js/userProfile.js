@@ -77,9 +77,9 @@ function submitUsername() {
 	}
 	
 	var currentUser = app.sessionDatabase.read();
-	currentUser.email = newUsername;
-	app.sessionDatabase.write(currentUser);
-	app.database.write(currentUser);
+	app.search.changeUserEmail(currentUser.email, newUsername); // change permanent user email in local storage
+	currentUser.email = newUsername; 
+	app.sessionDatabase.write(currentUser);        // change current user email in session storage
 	
 	document.getElementById("newUsername").value = "";
 	document.getElementById("newUsernameConfirm").value = "";
@@ -93,16 +93,27 @@ function submitUsername() {
 function submitPassword() {
 	var currentUser = app.sessionDatabase.read();
 	var db = app.database.read();
-	var currentPassword = currentUser.password;
+	var oldPassword = currentUser.password;
 	var newPassword = document.getElementById("newPassword").value;
 	var newPasswordConfirm = document.getElementById("newPasswordConfirm").value;
-
-		// TODO: Add error checking to see if current password isn't entered correctly, 
-	// or if new password doesn't match confirmed new password
-	currentUser.password = newPassword;
-	app.sessionDatabase.write(currentUser);
 	
-	document.getElementById("currentPassword").value = "";
+	// validation: check that the old password is correct
+	if (document.getElementById("oldPassword").value != oldPassword){
+		alert("Old password was entered incorrectly.");
+		return;
+	}
+
+	// validation: check that the same password both times
+	if (newPassword != newPasswordConfirm){
+		alert("Please make sure you typed the same password both times.");
+		return;
+	}
+
+	currentUser.password = newPassword;
+	app.search.changeUserPassword(currentUser.email, newPassword); // change permanent user password in local storage
+	app.sessionDatabase.write(currentUser);						   // change current user password in session storage
+	
+	document.getElementById("oldPassword").value = "";
 	document.getElementById("newPassword").value = "";
 	document.getElementById("newPasswordConfirm").value = "";
 	$('#passwordModal').modal('hide');

@@ -13,13 +13,14 @@ app.schema = function()
 	
 	function book()
 	{
-		var obj =  {authorFullName: null,
-					title: null,
-					subTitle: null,
-					edition: null,
-					ISBN: null,
-					price: null,
-					seller: null};
+		var obj =  {authorFullName: "",
+					title: "",
+					subTitle: "",
+					edition: "",
+					ISBN: "",
+					price: "",
+					seller: "",
+					condition: ""};
 		return obj;
 /*
 		//subject = []; // optional (from openlibrary)

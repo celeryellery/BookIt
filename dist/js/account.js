@@ -36,15 +36,21 @@ function createAccount() {
 			db.push(user);
 			app.database.write(db);
 			console.log("db", db);
-			alert("Account for " + email + " created! Please login now.");
-			window.location = "SignIn.html";
+			alert("Account for " + email + " created!");
+
+			var user = {email: email, 
+					password: password,
+					LoggedIn: true}
+			app.sessionDatabase.write(user);
+			
+			window.location = "MainPage.html";
 		}
 	}
 }
 
 //Checks if the account already exists
 function accountExists(db, email) {
-	for (var i = db.length - 1; i > 0; i--) {
+	for (var i = db.length - 1; i >= 0; i--) {
 		if (db[i] == null) {
 			return false;
 		}

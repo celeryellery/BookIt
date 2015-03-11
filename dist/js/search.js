@@ -127,7 +127,50 @@ app.search = function()
 		return searchItems;
 	}
 	
+	// changes the email of a user to the new email given to the function
+	function changeUserEmail(email, newEmail)
+	{
+		var db = app.database.read();
+		for (var i = 0; i < db.length; i++)
+		{
+			// found user with specified email
+			if (db[i].hasOwnProperty("email") && db[i].email.toLowerCase().indexOf(email.toLowerCase()) != -1)
+			{
+				db[i].email = newEmail;
+				// change the seller of all books posted by the user to reflect the new email
+				for (var j = 0; j < db.length; j++)
+				{
+					if (db[j].hasOwnProperty("seller") && db[j].seller.toLowerCase().indexOf(email.toLowerCase()) != -1)
+					{
+						db[j].seller = newEmail;
+					}
+				}
+				app.database.write(db);
+				return;
+			}
+		}
+	}
+	
+	// changes the password of a user to newPassword
+	function changeUserPassword(email, newPassword)
+	{
+		var db = app.database.read();
+		for (var i = 0; i < db.length; i++)
+		{
+			// found user with specified email
+			if (db[i].hasOwnProperty("email") && db[i].email.toLowerCase().indexOf(email.toLowerCase()) != -1)
+			{
+				// change password to new password
+				db[i].password = newPassword;
+				app.database.write(db);
+				return;
+			}
+		}
+	}
+	
 	// public api
 	return {searchBook: searchBook,
-			searchDatabase: searchDatabase};
+			searchDatabase: searchDatabase,
+			changeUserEmail: changeUserEmail,
+			changeUserPassword: changeUserPassword};
 }();

@@ -78,8 +78,8 @@ function submitUsername() {
 	
 	var currentUser = app.sessionDatabase.read();
 	currentUser.email = newUsername;
-	db.push(currentUser);
 	app.sessionDatabase.write(currentUser);
+	app.database.write(currentUser);
 	
 	document.getElementById("newUsername").value = "";
 	document.getElementById("newUsernameConfirm").value = "";
@@ -100,7 +100,6 @@ function submitPassword() {
 		// TODO: Add error checking to see if current password isn't entered correctly, 
 	// or if new password doesn't match confirmed new password
 	currentUser.password = newPassword;
-	db.push(currentUser);
 	app.sessionDatabase.write(currentUser);
 	
 	document.getElementById("currentPassword").value = "";

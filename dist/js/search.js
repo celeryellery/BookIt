@@ -97,8 +97,8 @@ app.search = function()
 
 			list.appendChild(a);
 		}
-			
 		$('#bookModal').modal('show');
+		document.getElementById("searchBar").value = "";
 	}
 	
 	// internally search the database for a given "term"

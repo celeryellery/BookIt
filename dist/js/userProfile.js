@@ -2,7 +2,7 @@ window.onload = function() {
 	var email = document.getElementById("emailField");
 	var user = app.sessionDatabase.read();
 	email.innerHTML += user.email;
-	document.getElementById("confirmLogout").onclick = logout;
+	document.getElementById("logoutBtn").onclick = logout;
 	document.getElementById("usernameSubmitBtn").onclick = submitUsername;
 	document.getElementById("passwordSubmitBtn").onclick = submitPassword;
     //searchData();

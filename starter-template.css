@@ -38,7 +38,7 @@ body {
 	background-color: #EFBE67;
 }
 
- #resetUsernameBtn, #resetPasswordBtn, #isbnHelp, #submitBtn, #submit {
+ #resetUsernameBtn, #resetPasswordBtn, #isbnHelp, #submitBtn, #submit, #usernameSubmitBtn, #passwordSubmitBtn {
  	background-color: #005263;
  }
 

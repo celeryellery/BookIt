@@ -1,6 +1,9 @@
 window.onload = function() {
 	document.getElementById("logoutBtn").onclick = logout;
 	document.getElementById("submit").onclick = submit; 
+	document.getElementById("closeSubmit").onclick = closeSubmit;
+	document.getElementById("closeNoSubmit").onclick = closeNoSubmit;
+
 	var email = document.getElementById("emailField");
 	var user = app.sessionDatabase.read();
 	console.log(user.email);
@@ -49,11 +52,11 @@ function submit()
 	var answer = document.getElementById("InputReal").value; 
 	if (answer == (spamValue1 + spamValue2))
 	{
-		alert("OMG, it worked."); 
+		 $('#yesSubmit').show();
 	}
 	else
 	{
-		alert("You're bad at this."); 
+		$('#noSubmit').show();
 	}
 
 }
@@ -73,4 +76,12 @@ function setupGuestCase() {
 
 	var submit = document.getElementById("submit");
 	submit.setAttribute("disabled", "disabled");
+}
+
+function closeSubmit() {
+	$('#yesSubmit').hide();
+}
+
+function closeNoSubmit() {
+	$('#noSubmit').hide();
 }

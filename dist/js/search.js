@@ -81,7 +81,7 @@ app.search = function()
 			if (user.LoggedIn === true) {
 				var alink = document.createElement('a');
 				alink.setAttribute("href", "mailto:" + books[i].seller);
-				alink.innerHTML = "Email the seller ";
+				alink.innerHTML = "Email " + books[i].seller;
 				var img = document.createElement('img');
 				img.setAttribute("src", "dist/img/mail_thumbnail.png");
 				img.setAttribute("width", "40");
